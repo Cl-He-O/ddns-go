@@ -65,10 +65,12 @@ func checkAndSave(request *http.Request) string {
 	conf.WebhookRequestBody = strings.TrimSpace(request.FormValue("WebhookRequestBody"))
 	conf.WebhookHeaders = strings.TrimSpace(request.FormValue("WebhookHeaders"))
 
-	// 如启用公网访问，帐号密码不能为空
-	if !conf.NotAllowWanAccess && (conf.Username == "" || conf.Password == "") {
-		return "启用外网访问, 必须输入登录用户名/密码"
-	}
+	/*
+		// 如启用公网访问，帐号密码不能为空
+		if !conf.NotAllowWanAccess && (conf.Username == "" || conf.Password == "") {
+			return "启用外网访问, 必须输入登录用户名/密码"
+		}
+	*/
 
 	dnsConfFromJS := []dnsConf4JS{}
 	err = json.Unmarshal([]byte(request.FormValue("DnsConf")), &dnsConfFromJS)
